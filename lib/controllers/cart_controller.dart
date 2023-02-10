@@ -6,7 +6,6 @@ import '../../../services/api.dart';
 class CartCrontroller {
   final cart = RxList<Product>();
   final api = Api();
-
   void add(Product product) {
     cart.add(product);
   }

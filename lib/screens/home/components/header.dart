@@ -11,6 +11,8 @@ class Header extends StatelessWidget {
 
   final _cartController = Get.find<CartCrontroller>();
 
+  get amount => _cartController.cart.length.toString();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,7 +23,6 @@ class Header extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          //BT cart
           InkWell(
             onTap: () {
               Get.toNamed('/');
@@ -43,17 +44,29 @@ class Header extends StatelessWidget {
                 builder: (BuildContext context) => _showCart(context),
               );
             },
-            child: Container(
-              height: 40,
-              width: 40,
-              decoration: BoxDecoration(
-                color: ColorsTheme.pinkColor,
-                borderRadius: BorderRadius.circular(7.0),
-              ),
-              child: const Icon(
-                Icons.shopping_bag_outlined,
-                color: Colors.white,
-              ),
+            child: Row(
+              children: [
+                Obx(
+                  () => Text(
+                    amount,
+                    style: const TextStyle(
+                        color: ColorsTheme.pinkColor,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Container(
+                  height: 40,
+                  width: 40,
+                  decoration: BoxDecoration(
+                    color: ColorsTheme.pinkColor,
+                    borderRadius: BorderRadius.circular(7.0),
+                  ),
+                  child: const Icon(
+                    Icons.shopping_bag_outlined,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
