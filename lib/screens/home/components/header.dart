@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../services/api.dart';
 import '../../constants.dart';
 import '/controllers/cart_controller.dart';
 import 'menu.dart';
@@ -11,7 +10,6 @@ class Header extends StatelessWidget {
   }) : super(key: key);
 
   final _cartController = Get.find<CartCrontroller>();
-  final api = Api();
 
   @override
   Widget build(BuildContext context) {
@@ -63,33 +61,14 @@ class Header extends StatelessWidget {
     );
   }
 
-  void carEmpity() {
-    ScaffoldMessenger.of(Get.context!).showSnackBar(
-      const SnackBar(
-        content: Text("Carrinho está vazio, adicione produtos!"),
-      ),
-    );
-    Get.back();
-  }
-
-  void haveProducts() async {
-    await api.addProduct(_cartController.cart);
-    ScaffoldMessenger.of(Get.context!).showSnackBar(
-      const SnackBar(
-        content: Text("Compra finalizada com sucesso!"),
-      ),
-    );
-    Get.toNamed('/');
-    _cartController.clear();
-  }
-
   AlertDialog _showCart(context) {
     return AlertDialog(
       title: const Text('Carrinho de compras'),
       actions: [
         OutlinedButton(
-          onPressed: () async =>
-              _cartController.cart.isEmpty ? carEmpity() : haveProducts(),
+          onPressed: () async => _cartController.cart.isEmpty
+              ? _cartController.cartEmpity()
+              : _cartController.haveProducts(),
           child: const Text('Finalizar compra'),
         ),
         TextButton(
