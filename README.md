@@ -44,7 +44,7 @@ No canto inferior direito você deve ver "Chrome(web-javascript)" como Device se
 
 Agora você esta pronto para navegar no site e simular o que seria a compra de um produto. Ao adicionar o produto no carrinho e finalizar a compra você voltará para página Home(por enquanto o projeto esta sem a página de pagamentos). Mas você poderá observar no terminal Frontend a mensagem {"status_code":200,"message":"Compra realizada com sucesso!"}.
 
-No Backend você verá a mensagem [ { id: '4', name: 'Intelligent Plastic Soap' } ], o que indica que sua compra foi salva com sucesso(produto não é gravado em um banco de dados por enquanto!).
+No Backend você verá a mensagem [ { id: '4', name: 'Intelligent Plastic Soap' } ], o que indica que sua compra foi salva com sucesso(produto não é salvo em um banco de dados por enquanto, salvo apenas em memória!).
 
 Para dar um get no produto você pode utilizar o Postman. 
 - [Postman](https://www.postman.com/downloads/)
